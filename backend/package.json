@@ -10,7 +10,8 @@
     "typeorm": "^0.2.28"
   },
   "scripts": {
-    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "devDependencies": {
     "ts-node-dev": "^1.0.0-pre.64",
