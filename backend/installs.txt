@@ -26,3 +26,14 @@ yarn typeorm migration:revert
 ** image upload
 yarn add multer
 yarn add @types/multer -D
+
+** errors
+yarn add express-async-errors
+
+** validation
+yarn add yup
+yarn add @types/yup -D
+
+** cors
+ yarn add cors
+ yarn add @types/cors -D-
