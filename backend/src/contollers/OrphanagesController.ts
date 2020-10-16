@@ -1,5 +1,5 @@
 import {getRepository} from "typeorm";
-import Orphanage from '../models/Orphanages';
+import Orphanage from '../models/Orphanage';
 import {Request, Response} from 'express';
 
 export default {
@@ -28,6 +28,14 @@ async create(req: Request, res: Response){
     } = req.body;
 
     const orphanagesRepository = getRepository(Orphanage);
+
+    const requestImages = req.files as Express.Multer.File[];
+    const images  = requestImages.map(image => {
+        return {
+            path: image.filename
+        }
+    })
+
     const orphanage = orphanagesRepository.create({    
         name,
         latitude,
@@ -36,6 +44,7 @@ async create(req: Request, res: Response){
         instructions,
         opening_hours,
         open_on_weekends,
+        images
     });
 
     try{
