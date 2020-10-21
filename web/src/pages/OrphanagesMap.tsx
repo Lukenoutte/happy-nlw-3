@@ -20,6 +20,7 @@ function OphanagesMap(){
     useEffect(()=> {
         api.get('orphanages').then(response => {setOrphanages(response.data)})
     }, [])
+    
     return(
     <div id="page-map">
         <aside>
