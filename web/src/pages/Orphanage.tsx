@@ -30,6 +30,7 @@ interface OrphanageParams{
 export default function Orphanage() {
   const params = useParams<OrphanageParams>();
   const [orphanage, setOrphanage] = useState<Orphanage>();
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   useEffect(()=> {
       api.get(`orphanages/${params.id}`).then(response => {setOrphanage(response.data)})
@@ -48,15 +49,20 @@ export default function Orphanage() {
       <main>
         <div className="orphanage-details">
           <img
-            src={orphanage.images[0].path}
+            src={orphanage.images[activeImageIndex].path}
             alt={orphanage.name}
           />
 
           <div className="images">
   
-            {orphanage.images.map( image => {
+            {orphanage.images.map( (image, index) => {
               return (
-                <button key={image.id} className="active" type="button">
+                <button 
+                key={image.id} 
+                className={activeImageIndex === index ? 'active':''} 
+                type="button"
+                onClick={() => {setActiveImageIndex(index)}}
+                >                
                 <img
                   src={image.path}
                   alt={orphanage.name}
